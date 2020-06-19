@@ -1,5 +1,5 @@
 # Myth Busters DB
-A database system for project, "COVID-19 Myth Busters in World Languages".
+A database system for the project, [COVID-19 Myth Busters in World Languages](https://covid-no-mb.org/).
 It is now in an early development stage.
 
 ## Requirements
