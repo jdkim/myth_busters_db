@@ -1,0 +1,40 @@
+// Place all the styles related to the articles controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+table {
+	border: 1px solid #555;
+	border-collapse: collapse;
+
+	thead {
+		background-color: #ddd;
+	}
+
+	tr {
+		border: 1px solid #555;
+		
+		th {
+			padding: 5px;
+		}
+
+		td {
+			border: 1px solid #555;
+			padding: 5px;
+		}
+	}
+
+}
+
+.language_selector {
+	margin: 1px;
+	border: 1px solid #333;
+	background-color: #ddf;
+	border-radius: 2px;
+	padding: 2px;
+
+	a {
+		display: inline-block;
+		background-color: #ddd;
+		color: #99f;
+	}
+}

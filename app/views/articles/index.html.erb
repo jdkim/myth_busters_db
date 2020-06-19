@@ -1,0 +1,26 @@
+<table>
+  <thead>
+    <tr>
+      <th>
+        <div>Language: 
+          <% list_of_languages.each do |lang| %>
+            <%= link_to(lang, articles_path(lang:lang)) %>
+          <% end %>
+        </div>
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @articles.each do |article| %>
+      <tr>
+        <td>
+          <h2><%= article.title %></h2>
+          <%= article.body %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'New Article', new_article_path %>

@@ -1,0 +1,52 @@
+<table>
+  <thead>
+    <tr>
+      <th style="width:50%">
+        <div>Language1: 
+          <% list_of_languages.each do |lang1| %>
+            <span class='language_selector'><%= link_to_unless_current(lang1, pairs_path(lang1:lang1, lang2:lang2)) %></span>
+          <% end %>
+        </div>
+      </th>
+      <th style="width:50%">
+        <div>Language2: 
+          <% list_of_languages.each do |lang2| %>
+            <span class='language_selector'><%= link_to_unless_current(lang2, pairs_path(lang1:lang1, lang2:lang2)) %></span>
+          <% end %>
+        </div>
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @articles.each do |article| %>
+      <%
+        lcode2, scode2 = lang2_codes
+        article2 = Article.where(aid:article.aid, lcode:lcode2, scode:scode2).first
+      %>
+      <tr>
+        <td class="article-left">
+          <h2><%= article.title %></h2>
+          <p><%= article.body %></p>
+        </td>
+        <% if article2.nil? %>
+          <td class="article-right">
+            <p>-</p>
+            <p style="text-align:right">[<%= link_to 'Create', new_article_path(aid:article.aid) %>]</p>
+          </td>
+        <% else %>
+          <td class="article-right">
+            <h2><%= article2.title %></h2>
+            <p><%= article2.body %></p>
+            <p style="text-align:right">[<%= link_to 'Edit', edit_article_path(article2) %>]
+            [<%= link_to 'Destroy', article2, method: :delete, data: { confirm: 'Are you sure?' } %>]</p>
+          </td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Article', new_article_path %>

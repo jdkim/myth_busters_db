@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>MythBusters</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <div id="header">
+      <h1>Myth Busters DB</h1>
+      <div>
+        [<%= link_to_unless_current 'Single', articles_path%>]
+        [<%= link_to_unless_current 'Pair', pairs_path %>]
+      </div>
+      <p id="notice"><%= notice %></p>
+    </div>
+    <div id="body">
+      <%= yield %>
+    </div>
+    <div id="footer"></div>
+  </body>
+</html>
