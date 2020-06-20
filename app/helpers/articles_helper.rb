@@ -5,11 +5,11 @@ module ArticlesHelper
 	end
 
 	def lang1
-		params[:lang1] || 'eng-xxx'
+		params[:lang1] || 'eng-eng'
 	end
 
 	def lang2
-		params[:lang2] || 'eng-xxx'
+		params[:lang2] || 'eng-eng'
 	end
 
 	def lang2_codes
