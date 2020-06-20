@@ -4,7 +4,7 @@ class ArticlesController < ApplicationController
   # GET /articles
   # GET /articles.json
   def index
-    lang = params[:lang] || 'eng-xxx'
+    lang = params[:lang] || 'eng-eng'
     lcode, scode = lang.split('-')
     @articles = Article.where(lcode:lcode, scode:scode)
 
@@ -16,7 +16,7 @@ class ArticlesController < ApplicationController
   end
 
   def pairs
-    lang1 = params[:lang1] || 'eng-xxx'
+    lang1 = params[:lang1] || 'eng-eng'
     lcode1, scode1 = lang1.split('-')
     @articles = Article.where(lcode:lcode1, scode:scode1)
   end
