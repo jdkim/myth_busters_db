@@ -1,0 +1,10 @@
+<%= render partial: 'header' %>
+
+<h1>
+	<%= @script.label %>
+</h1>
+
+<%= render 'form' %>
+
+<%= link_to 'Show', @script, class: 'button' %>
+<%= link_to 'List', scripts_path, class: 'button' %>

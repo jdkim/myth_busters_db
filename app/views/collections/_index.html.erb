@@ -1,0 +1,6 @@
+<div class='collections'>
+	<%= render partial: 'collection', collection: Collection.all %>
+	<% if current_user %>
+		<%= link_to 'New', new_collection_path, class: 'button new' %>
+	<% end %>
+</div>

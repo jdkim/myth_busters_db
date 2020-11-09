@@ -1,0 +1,6 @@
+<div class='collections'>
+	<%= render partial: 'language', collection: Language.all.order(:label) %>
+	<% if current_user %>
+		<%= link_to 'New', new_language_path, class: 'button new' %>
+	<% end %>
+</div>

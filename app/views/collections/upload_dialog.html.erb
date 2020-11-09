@@ -1,0 +1,18 @@
+<fieldset class="dialog">
+	<legend>Upload Master</legend>
+
+	<%= form_tag upload_languages_path, multipart: true, multiple:true do -%>
+		<%= file_field_tag :file, required: true %><br/>
+		<%= submit_tag 'Upload', class: "button" %>
+	<% end %>
+</fieldset>
+
+<fieldset class="dialog">
+	<legend>Upload Collection</legend>
+
+	<%= form_tag upload_articles_path, multipart: true, multiple:true do -%>
+		<%= file_field_tag :file, required: true %><br/>
+		<%= submit_tag 'Upload', class: "button" %>
+	<% end %>
+</fieldset>
+

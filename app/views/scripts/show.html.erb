@@ -1,0 +1,32 @@
+<%= render partial: 'header' %>
+<%= render partial: 'index' %>
+
+<h1><%= @script.label %></h1>
+
+<table>
+	<tr>
+		<th>iso15924</th>
+		<td><%= @script.iso15924 %></td>
+	</tr>
+	<tr>
+		<th>Translations</th>
+		<td><%= render partial: 'collections/collection', collection: @script.collections %></td>
+	</tr>
+</table>
+
+<% if current_user %>
+	<fieldset class='manager_menu'>
+		<legend>Manager menu</legend>
+		<%= link_to 'Edit', edit_script_path(@script), class: :button %>
+		<%=
+			link_to(
+				'Delete',
+				@script,
+				title: 'Delete the script',
+				method: :delete,
+				data: {confirm: 'Are you sure to completely delete this script?'},
+				class: :button
+			)
+		%>
+	</fieldset>
+<% end %>

@@ -1,0 +1,41 @@
+<%= form_for(@collection) do |f| %>
+	<% if @collection.errors.any? %>
+		<div id="error_explanation">
+			<h2><%= pluralize(@collection.errors.count, "error") %> prohibited this collection from being saved:</h2>
+
+			<ul>
+			<% @collection.errors.full_messages.each do |msg| %>
+				<li><%= msg %></li>
+			<% end %>
+			</ul>
+		</div>
+	<% end %>
+
+	<table class="project-properties">
+		<tr>
+			<th><%= f.label :label %></th>
+			<td><%= f.text_field :label, required: true %></td>
+		</tr>
+
+		<tr>
+			<th><%= f.label :authors %></th>
+			<td><%= f.text_field :authors %></td>
+		</tr>
+
+		<tr>
+			<th><%= f.label :source %></th>
+			<td><%= f.text_field :source %></td>
+		</tr>
+		<tr>
+			<th><%= f.label :language_id %></th>
+			<td><%= f.text_field :language_id %></td>
+		</tr>
+		<tr>
+			<th><%= f.label :script_id %></th>
+			<td><%= f.text_field :script_id %></td>
+		</tr>
+		<tr>
+			<th colspan="3"><%= f.submit %></th>
+		</tr>
+	</table>
+<% end %>

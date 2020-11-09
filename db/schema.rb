@@ -10,17 +10,61 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_15_051138) do
+ActiveRecord::Schema.define(version: 2020_11_07_071443) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "articles", force: :cascade do |t|
-    t.string "aid"
+    t.bigint "collection_id"
+    t.integer "number"
+    t.string "native_number"
     t.string "title"
     t.text "body"
-    t.string "lcode"
-    t.string "scode"
-    t.string "author"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["collection_id"], name: "index_articles_on_collection_id"
+  end
+
+  create_table "collections", force: :cascade do |t|
+    t.string "label"
+    t.string "authors", array: true
+    t.string "source"
+    t.bigint "language_id"
+    t.bigint "script_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["language_id"], name: "index_collections_on_language_id"
+    t.index ["script_id"], name: "index_collections_on_script_id"
+  end
+
+  create_table "languages", force: :cascade do |t|
+    t.string "iso639_3"
+    t.string "label"
+    t.string "autonyms", array: true
+    t.string "glossonyms", array: true
+    t.string "reference"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "scripts", force: :cascade do |t|
+    t.string "iso15924"
+    t.string "label"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
 end

@@ -1,0 +1,5 @@
+<%=
+	link_to_unless_current collection.label, collection_path(collection), class: 'button' do
+		content_tag :span, collection.label, class: 'button current'
+	end
+%>

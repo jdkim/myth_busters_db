@@ -1,6 +1,6 @@
-class Article < ApplicationRecord
-	belongs_to :collection
-	
+class Language < ApplicationRecord
+	has_many :collections
+
 	def self.as_csv
 		CSV.generate do |csv|
 			csv << column_names

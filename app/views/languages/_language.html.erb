@@ -1,0 +1,7 @@
+<%
+	title  = language.label
+	title += ' | ' + language.autonyms[0] if language.autonyms && language.autonyms.length > 0
+	title += " (#{language.collections.count})"
+%>
+
+<%= link_to title, language, class: :button %>

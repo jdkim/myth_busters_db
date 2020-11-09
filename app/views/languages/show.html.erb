@@ -1,0 +1,44 @@
+<%= render partial: 'header' %>
+<%= render partial: 'index' %>
+
+<h1><%= @language.label %></h1>
+
+<table>
+	<tr>
+		<th>iso639_3</th>
+		<td><%= @language.iso639_3 %></td>
+	</tr>
+	<tr>
+		<th>autonyms</th>
+		<td><%= @language.autonyms.join(', ') %></td>
+	</tr>
+	<tr>
+		<th>glossonyms</th>
+		<td><%= @language.glossonyms.join(', ') %></td>
+	</tr>
+	<tr>
+		<th>reference</th>
+		<td><%= link_to @language.reference, @language.reference unless @language.reference.nil? %></td>
+	</tr>
+	<tr>
+		<th>Translations</th>
+		<td><%= render partial: 'collections/collection', collection: @language.collections %></td>
+	</tr>
+</table>
+
+<% if current_user %>
+	<fieldset class='manager_menu'>
+		<legend>Manager menu</legend>
+		<%= link_to 'Edit', edit_language_path(@language), class: :button %>
+		<%=
+			link_to(
+				'Delete',
+				@language,
+				title: 'Delete the language',
+				method: :delete,
+				data: {confirm: 'Are you sure to completely delete this language?'},
+				class: :button
+			)
+		%>
+	</fieldset>
+<% end %>

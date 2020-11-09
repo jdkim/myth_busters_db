@@ -1,0 +1,29 @@
+<%= form_for(@script) do |f| %>
+	<% if @script.errors.any? %>
+		<div id="error_explanation">
+			<h2><%= pluralize(@script.errors.count, "error") %> prohibited this script from being saved:</h2>
+
+			<ul>
+			<% @script.errors.full_messages.each do |msg| %>
+				<li><%= msg %></li>
+			<% end %>
+			</ul>
+		</div>
+	<% end %>
+
+	<table class="properties">
+		<tr>
+			<th><%= f.label :label %></th>
+			<td><%= f.text_field :label, required: true %></td>
+		</tr>
+
+		<tr>
+			<th><%= f.label :iso15924 %></th>
+			<td><%= f.text_field :iso15924 %></td>
+		</tr>
+
+		<tr>
+			<th colspan="3"><%= f.submit %></th>
+		</tr>
+	</table>
+<% end %>

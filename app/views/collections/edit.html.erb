@@ -1,0 +1,10 @@
+<%= render partial: 'header' %>
+
+<h1>
+	<%= @collection.label %>
+</h1>
+
+<%= render 'form' %>
+
+<%= link_to 'Show', @collection, class: 'button' %>
+<%= link_to 'List', collections_path, class: 'button' %>

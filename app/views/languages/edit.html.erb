@@ -1,0 +1,10 @@
+<%= render partial: 'header' %>
+
+<h1>
+	<%= @language.label %>
+</h1>
+
+<%= render 'form' %>
+
+<%= link_to 'Show', @language, class: 'button' %>
+<%= link_to 'List', languages_path, class: 'button' %>

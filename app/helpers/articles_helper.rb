@@ -1,7 +1,7 @@
 module ArticlesHelper
 
 	def list_of_languages
-		Article.distinct.pluck(:lcode, :scode).map{|l,s| "#{l}-#{s}"}
+		Language.distinct.pluck(:label)
 	end
 
 	def lang1

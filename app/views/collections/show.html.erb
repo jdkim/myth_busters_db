@@ -1,0 +1,64 @@
+<%= render partial: 'header' %>
+<%= render partial: 'index' %>
+
+<h1><%= @collection.label %></h1>
+<table class="info">
+	<tr>
+		<th>Authors</th>
+		<td><%= @collection.authors.join(", ") %></td>
+	</tr>
+	<tr>
+		<th>Source language</th>
+		<td><%= @collection.source %></td>
+	</tr>
+</table>
+<table class="info">
+	<tr>
+		<th>Language</th>
+		<td><%= render partial:'languages/language', object: @collection.language %></td>
+	</tr>
+		<th>Script</th>
+		<td><%= render partial:'scripts/script', object: @collection.script %></td>
+	</tr>
+</table>
+<table class="info">
+	<tr>
+		<th>Created at</th>
+		<td><%= @collection.created_at%></td>
+	</tr>
+	<tr>
+		<th>Updated at</th>
+		<td><%= @collection.updated_at%></td>
+	</tr>
+</table>
+
+<% if current_user %>
+	<fieldset class='manager_menu'>
+		<legend>Manager menu</legend>
+		<%= link_to 'Edit', edit_collection_path(@collection), class: :button %>
+		<%=
+			link_to(
+				'Delete',
+				@collection,
+				title: 'Delete the translation',
+				method: :delete,
+				data: {confirm: 'Are you sure to completely delete this translation?'},
+				class: :button
+			)
+		%>
+	</fieldset>
+<% end %>
+
+<table>
+	<% @collection.articles.order(:number).each do |article| %>
+		<tr>
+			<th><%= article.native_number.nil? ? article.number : article.native_number %></th>
+			<td>
+				<%= article.title %>
+				<% if current_user %>
+					<%= link_to 'edit', edit_article_path(article), class: 'button edit' %>
+				<% end %>
+			</td>
+		</tr>
+	<% end %>
+</table>
