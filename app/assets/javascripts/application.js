@@ -13,6 +13,8 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery-ui
+//= require jquery-ui/widgets/autocomplete
+//= require autocomplete-rails
 //= require activestorage
 //= require turbolinks
 //= require wice_grid

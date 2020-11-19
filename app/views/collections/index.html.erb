@@ -1,2 +1,5 @@
 <%= render partial: 'header' %>
 <%= render partial: 'index' %>
+
+<%= link_to "Download meta data", collections_path(format: :csv), class: :button %>
+<%= link_to "Download translations", articles_path(format: :csv), class: :button %>

@@ -32,7 +32,7 @@
 	</tr>
 </table>
 
-<% if current_user %>
+<% if current_user && current_user.root %>
 	<fieldset class='manager_menu'>
 		<legend>Manager menu</legend>
 		<%= link_to 'Edit', edit_collection_path(@collection), class: :button %>
@@ -53,12 +53,22 @@
 	<% @collection.articles.order(:number).each do |article| %>
 		<tr>
 			<th><%= article.native_number.nil? ? article.number : article.native_number %></th>
-			<td>
-				<%= article.title %>
-				<% if current_user %>
+			<% if false %>
+				<td class="ashow" anum="<%= article.number %>" id="ashow_<%= article.number %>">
+					<%= article.title %>
 					<%= link_to 'edit', edit_article_path(article), class: 'button edit' %>
-				<% end %>
-			</td>
+				</td>
+				<td class="aform" anum="<%= article.number %>" id="aform_<%= article.number %>" style="display:none">
+					<%= form_for(article) do |f| %>
+						<%= f.text_field :title, required: true %>
+					<% end %>
+					<%= link_to 'edit', edit_article_path(article), class: 'button edit' %>
+				</td>
+			<% else %>
+				<td>
+					<%= article.title %>
+				</td>
+			<% end %>
 		</tr>
 	<% end %>
 </table>

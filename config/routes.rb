@@ -3,12 +3,19 @@ Rails.application.routes.draw do
 
   get 'languages/index'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  root to: 'collections#show'
+  root to: 'collections#index'
 
   resources :languages
   resources :scripts
-  resources :collections
+  resources :collections do
+    collection do
+      get :autocomplete_language_label
+      get :autocomplete_script_label
+    end
+  end
+
   resources :articles
+
 
   get '/pairs', to: 'collections#pairs', as: 'pairs'
 

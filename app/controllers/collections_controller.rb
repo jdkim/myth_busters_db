@@ -2,6 +2,9 @@ class CollectionsController < ApplicationController
 	protect_from_forgery
 	before_action :set_collection, only: [:show, :edit, :update, :destroy]
 
+	autocomplete :language, :label
+	autocomplete :script, :label
+
 	# GET /collections
 	# GET /collections.json
 	def index
@@ -10,7 +13,7 @@ class CollectionsController < ApplicationController
 		respond_to do |format|
 			format.html
 			format.json { render json: @collections.as_json }
-			format.csv  { send_data @collections.as_csv }
+			format.csv  { send_data @collections.as_csv, filename: 'Myth_busters_translations_meta.csv'}
 		end
 	end
 
@@ -152,6 +155,6 @@ class CollectionsController < ApplicationController
 		# Only allow a list of trusted parameters through.
 		def collection_params
 			params.require(:collection).permit(:label, :source, :language_id, :script_id).
-				merge(authors: (params.dig(:language, :authors).presence || '').split(/ *, */))
+				merge(authors: (params.dig(:collection, :authors).presence || '').split(/ *, */))
 		end
 end

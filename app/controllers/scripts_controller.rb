@@ -36,6 +36,15 @@ class ScriptsController < ApplicationController
 		end
 	end
 
+	def destroy
+		if @script.collections.empty?
+			@script.destroy! 
+			redirect_to languages_path, notice: "The script, #{script.label}, was deleted."
+		else
+			redirect_to @script, notice: 'Could not delete it, due to the existing translation(s)'
+		end
+	end
+
 	private
 		# Use callbacks to share common setup or constraints between actions.
 		def set_script

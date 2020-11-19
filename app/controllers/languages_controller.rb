@@ -42,8 +42,12 @@ class LanguagesController < ApplicationController
 	end
 
 	def destroy
-		@language.destroy!
-		redirect_to languages_path
+		if @language.collections.empty?
+			@language.destroy! 
+			redirect_to languages_path, notice: "The language, #{@language.label}, was deleted."
+		else
+			redirect_to @language, notice: 'Could not delete it, due to the existing translation(s)'
+		end
 	end
 
 	private

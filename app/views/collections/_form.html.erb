@@ -28,11 +28,31 @@
 		</tr>
 		<tr>
 			<th><%= f.label :language_id %></th>
-			<td><%= f.text_field :language_id %></td>
+			<td style="display:none"><%= f.text_field :language_id %></td>
+			<td>
+				<%
+					label = if @collection && @collection.language
+						@collection.language.label
+					else
+						nil
+					end
+				%>
+				<%= autocomplete_field_tag 'language', '', autocomplete_language_label_collections_path, id_element: '#collection_language_id', placeholder: label %>
+			</td>
 		</tr>
 		<tr>
 			<th><%= f.label :script_id %></th>
-			<td><%= f.text_field :script_id %></td>
+			<td style="display:none"><%= f.text_field :script_id %></td>
+			<td>
+				<%
+					label = if @collection && @collection.script
+						@collection.script.label
+					else
+						nil
+					end
+				%>
+				<%= autocomplete_field_tag 'script', '', autocomplete_script_label_collections_path, id_element: '#collection_script_id', placeholder: label %>
+			</td>
 		</tr>
 		<tr>
 			<th colspan="3"><%= f.submit %></th>

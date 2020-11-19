@@ -2,6 +2,18 @@ class ArticlesController < ApplicationController
 	protect_from_forgery
 	before_action :set_article, only: [:show, :edit, :update, :destroy]
 
+	# GET /collections
+	# GET /collections.json
+	def index
+		articles = Article.all
+
+		respond_to do |format|
+			format.html
+			format.json { render json: articles.as_json }
+			format.csv  { send_data articles.as_csv, filename: 'Myth_busters_translations.csv'}
+		end
+	end
+
 	# GET /articles/1
 	# GET /articles/1.json
 	def show
@@ -17,14 +29,11 @@ class ArticlesController < ApplicationController
 
 	# GET /articles/1/edit
 	def edit
-		@article.authors = @article.authors.join(', ')
 	end
 
 	# POST /articles
 	# POST /articles.json
 	def create
-		@article = Collection.new(article_params)
-
 		respond_to do |format|
 			if @article.save
 				format.html { redirect_to @article, notice: 'Collection was successfully created.' }
@@ -64,7 +73,7 @@ class ArticlesController < ApplicationController
 	private
 		# Use callbacks to share common setup or constraints between actions.
 		def set_article
-			@article = params.has_key?(:id) ? Collection.find(params[:id]) : nil
+			@article = params.has_key?(:id) ? Article.find(params[:id]) : nil
 		end
 
 		# Only allow a list of trusted parameters through.

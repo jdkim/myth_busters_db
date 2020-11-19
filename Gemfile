@@ -66,3 +66,4 @@ gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'wice_grid'              # Grid viewer for tab-separated data view.
 gem 'devise'
+gem 'rails-autocomplete', '~> 2.0', '>= 2.0.1'

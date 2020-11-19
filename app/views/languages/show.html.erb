@@ -26,7 +26,7 @@
 	</tr>
 </table>
 
-<% if current_user %>
+<% if current_user && current_user.root %>
 	<fieldset class='manager_menu'>
 		<legend>Manager menu</legend>
 		<%= link_to 'Edit', edit_language_path(@language), class: :button %>
