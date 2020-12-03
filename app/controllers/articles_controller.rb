@@ -5,12 +5,17 @@ class ArticlesController < ApplicationController
 	# GET /collections
 	# GET /collections.json
 	def index
-		articles = Article.all
+		articles, filename = if params[:collection_id].present?
+			collection = Collection.find(params[:collection_id])
+			[collection.articles, "Myth_busters_translations_#{collection.label}.csv"]
+		else
+			[Article.all, 'Myth_busters_translations.csv']
+		end
 
 		respond_to do |format|
 			format.html
 			format.json { render json: articles.as_json }
-			format.csv  { send_data articles.as_csv, filename: 'Myth_busters_translations.csv'}
+			format.csv  { send_data articles.as_csv, filename: filename}
 		end
 	end
 

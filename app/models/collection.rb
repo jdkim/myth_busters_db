@@ -12,6 +12,13 @@ class Collection < ApplicationRecord
 		end
 	end
 
+	def as_csv
+		CSV.generate do |csv|
+			csv << ["name", "authors", "source_language", "language", "script", "updated_at"]
+			csv << [label, authors, source, language.label, script.label, updated_at]
+		end
+	end
+
 	def empty!
 		articles.destroy_all
 	end

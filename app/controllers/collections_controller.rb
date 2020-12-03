@@ -28,6 +28,11 @@ class CollectionsController < ApplicationController
 		if @collection.nil?
 			redirect_to collection_path(25)
 		end
+		respond_to do |format|
+			format.html
+			format.json { render json: @collection.as_json }
+			format.csv  { send_data @collection.as_csv, filename: "Myth_busters_translations_meta_#{@collection.label}.csv"}
+		end
 	end
 
 	# GET /collections/new

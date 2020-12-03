@@ -2,6 +2,9 @@
 <%= render partial: 'index' %>
 
 <h1><%= @collection.label %></h1>
+<%= link_to "Download meta data", collection_path(@collection, format: :csv), class: :button %>
+<%= link_to "Download translations", collection_articles_path(@collection, format: :csv), class: :button %>
+<br/><br/>
 <table class="info">
 	<tr>
 		<th>Authors</th>

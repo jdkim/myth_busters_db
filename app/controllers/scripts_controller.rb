@@ -2,6 +2,13 @@ class ScriptsController < ApplicationController
 	before_action :set_script, only: [:show, :edit, :update, :destroy]
 
 	def index
+		@scripts = Script.all
+
+		respond_to do |format|
+			format.html
+			format.json { render json: @scripts.as_json }
+			format.csv  { send_data @scripts.as_csv, filename: 'Myth_busters_scripts.csv'}
+		end
 	end
 
 	def show

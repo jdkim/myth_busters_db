@@ -3,6 +3,13 @@ class LanguagesController < ApplicationController
 	before_action :set_language, only: [:show, :edit, :update, :destroy]
 
 	def index
+		@languages = Language.all
+
+		respond_to do |format|
+			format.html
+			format.json { render json: @languages.as_json }
+			format.csv  { send_data @languages.as_csv, filename: 'Myth_busters_languages.csv'}
+		end
 	end
 
 	def show
