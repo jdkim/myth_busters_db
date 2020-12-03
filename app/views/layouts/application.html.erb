@@ -11,7 +11,7 @@
 
 	<body>
 		<div id="header">
-			<h1>Myth Busters DB</h1>
+			<h1><%= link_to 'Myth Busters DB', root_path %></h1>
 			<h2><%= yield :subtitle %></h2>
 			<div class='index'><%= yield :index %></div>
 			<div class="account menu">
@@ -22,7 +22,9 @@
 					</ul>
 				<% else %>
 					<ul>
+<!--
 						<li><%= link_to "Sign up", new_user_registration_path %></li>
+ -->
 						<li><%= link_to "Login", new_user_session_path %></li>
 					</ul>
 				<% end %>

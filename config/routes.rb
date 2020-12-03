@@ -7,7 +7,10 @@ Rails.application.routes.draw do
 
   resources :languages
   resources :scripts
+
   resources :collections do
+    resources :articles
+
     collection do
       get :autocomplete_language_label
       get :autocomplete_script_label
