@@ -55,7 +55,7 @@ class ArticlesController < ApplicationController
 	def update
 		respond_to do |format|
 			if @article.update(article_params)
-				format.html { redirect_to @article, notice: 'Collection was successfully updated.' }
+				format.html { redirect_to @article.collection, notice: 'Translation was successfully updated.' }
 				format.json { render :show, status: :ok, location: @article }
 			else
 				format.html { render :edit }
@@ -83,7 +83,6 @@ class ArticlesController < ApplicationController
 
 		# Only allow a list of trusted parameters through.
 		def article_params
-			params.require(:article).permit(:label, :source, :language_id, :script_id).
-				merge(authors: (params.dig(:language, :authors).presence || '').split(/ *, */))
+			params.require(:article).permit(:title)
 		end
 end

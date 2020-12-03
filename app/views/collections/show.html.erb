@@ -35,7 +35,7 @@
 	</tr>
 </table>
 
-<% if current_user && current_user.root %>
+<% if @collection.editable?(current_user) %>
 	<fieldset class='manager_menu'>
 		<legend>Manager menu</legend>
 		<%= link_to 'Edit', edit_collection_path(@collection), class: :button %>
@@ -56,16 +56,14 @@
 	<% @collection.articles.order(:number).each do |article| %>
 		<tr>
 			<th><%= article.native_number.nil? ? article.number : article.native_number %></th>
-			<% if false %>
-				<td class="ashow" anum="<%= article.number %>" id="ashow_<%= article.number %>">
+
+			<% if @collection.editable?(current_user) %>
+				<td>
 					<%= article.title %>
-					<%= link_to 'edit', edit_article_path(article), class: 'button edit' %>
-				</td>
-				<td class="aform" anum="<%= article.number %>" id="aform_<%= article.number %>" style="display:none">
-					<%= form_for(article) do |f| %>
-						<%= f.text_field :title, required: true %>
-					<% end %>
-					<%= link_to 'edit', edit_article_path(article), class: 'button edit' %>
+					<%= link_to 'edit', 'javascript:void(0)', class: 'button button_edit_article', article_number: article.number %>
+					<div class='dialog_edit_article' id='dialog_edit_article-<%= article.number%>' style='display:none'>
+						<%= render partial: 'articles/form', locals: {article: article} %>
+					</div>
 				</td>
 			<% else %>
 				<td>
@@ -75,3 +73,14 @@
 		</tr>
 	<% end %>
 </table>
+
+<% if @collection.editable?(current_user) %>
+	<script>
+		$('.button_edit_article').on('click', function(){
+			var anum = $(this).attr('article_number');
+			$('.dialog_edit_article').hide();
+			$('#dialog_edit_article-' + anum).show();
+		});
+	</script>
+<% end %>
+

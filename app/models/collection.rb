@@ -19,6 +19,10 @@ class Collection < ApplicationRecord
 		end
 	end
 
+	def editable?(user)
+		user && user.root
+	end
+
 	def empty!
 		articles.destroy_all
 	end
