@@ -1,6 +1,6 @@
-<div class='collections'>
+<% content_for :index do %>
 	<%= render partial: 'language', collection: Language.order(:label) %>
 	<% if current_user && current_user.root %>
 		<%= link_to 'New', new_language_path, class: 'button new' %>
 	<% end %>
-</div>
+<% end %>
